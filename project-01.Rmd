@@ -1,0 +1,32 @@
+---
+title: "Project 01"
+author: "Carl Herrmann"
+date: "4/17/2019"
+output:
+  html_document: 
+    keep_md: yes 
+  pdf_document: default
+---
+# A Rmarkdown tutorial
+
+This is a brief tutorial on how to use Rmarkdown to create dynamic documents
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_knit$set(root.dir='/Users/carlherrmann/Teaching/SS2019/DataAnalysis_4FS')
+```
+
+## Load the dataset
+
+```{r read_data}
+allDepMapData = readRDS('Data/depmap/DepMap19Q1_allData.RDS')
+```
+
+Now plot the distribution of the cell lines according to the tissue type
+
+```{r plot_data,fig.height=12,fig.width=12}
+freq = sort(table(allDepMapData$annotation$Primary.Disease))
+par(las=2,mar=c(3,8,3,3));barplot(freq,horiz=FALSE, col='lightgrey')
+```
+
